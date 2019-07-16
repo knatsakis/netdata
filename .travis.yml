@@ -424,7 +424,9 @@ jobs:
 
 
   - env:
-      BUILD_STRING="debian/test"
+    - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="jessie" BUILD_STRING="debian/jessie"
+    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
+    - ALLOW_SOFT_FAILURE_HERE=true
 
   # Enterprise linux builds (Centos, Redhat, Amazon linux (el/6))
   #
