@@ -147,7 +147,7 @@ stages:
 
   # TODO: This section is stale, will be aligned with the RPM implementation when we get to DEB packaging
 - stage: &_DEB_TEMPLATE
-    name: "Build & Publish DEB package"
+    name: "Build & Publish DEB package for ${BUILD_DISTRO}"
     before_install:
     - sudo apt-get install -y wget lxc lxc-templates dh-make git-buildpackage build-essential libdistro-info-perl
     - source tests/installer/slack.sh
@@ -363,23 +363,17 @@ jobs:
 
   # Ubuntu distros build
   #
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package ubuntu/disco"
-    env:
-    - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
-    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
-    - ALLOW_SOFT_FAILURE_HERE=true
+  - env:
+      <<: *_DEB_TEMPLATE
+      - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
+      - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
+      - ALLOW_SOFT_FAILURE_HERE=true
 
-
-
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package ubuntu/cosmic"
-    env:
-    - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
-    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
-    - ALLOW_SOFT_FAILURE_HERE=true
+  - env:
+      <<: *_DEB_TEMPLATE
+      - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
+      - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
+      - ALLOW_SOFT_FAILURE_HERE=true
 
 
 
