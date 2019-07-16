@@ -146,8 +146,8 @@ stages:
 
 
   # TODO: This section is stale, will be aligned with the RPM implementation when we get to DEB packaging
-- env: &_DEB_TEMPLATE
-    name: "Build & Publish DEB package for ${BUILD_DISTRO}"
+- stage: &_DEB_TEMPLATE
+    name: "Build & Publish DEB package"
     before_install:
     - sudo apt-get install -y wget lxc lxc-templates dh-make git-buildpackage build-essential libdistro-info-perl
     - source tests/installer/slack.sh
@@ -363,22 +363,30 @@ jobs:
 
   # Ubuntu distros build
   #
-  - env:
+  - stage:
     <<: *_DEB_TEMPLATE
+    stage: "Package ubuntu/disco"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
 
-  - env:
+
+
+  - stage:
     <<: *_DEB_TEMPLATE
+    stage: "Package ubuntu/cosmic"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
 
 
 
-  - env:
+  - stage:
     <<: *_DEB_TEMPLATE
+    stage: "Package ubuntu/bionic"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="bionic" BUILD_STRING="ubuntu/bionic"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
@@ -386,29 +394,37 @@ jobs:
 
 
   # Debian distros build
-  - env:
+  - stage:
     <<: *_DEB_TEMPLATE
+    stage: "Package debian/buster"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="buster" BUILD_STRING="debian/buster"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
 
 
 
-  - env:
+  - stage: 
     <<: *_DEB_TEMPLATE
+    stage: "Package debian/stretch"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="stretch" BUILD_STRING="debian/stretch"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
 
 
 
-  - env:
+  - stage:
     <<: *_DEB_TEMPLATE
+    stage: "Package debian/jessie"
+    env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="jessie" BUILD_STRING="debian/jessie"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
 
 
+  - env:
+      BUILD_STRING="debian/test"
 
   # Enterprise linux builds (Centos, Redhat, Amazon linux (el/6))
   #
