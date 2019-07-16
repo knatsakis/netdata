@@ -364,16 +364,16 @@ jobs:
   # Ubuntu distros build
   #
   - env:
-      <<: *_DEB_TEMPLATE
-      - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
-      - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
-      - ALLOW_SOFT_FAILURE_HERE=true
+    <<: *_DEB_TEMPLATE
+    - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
+    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
+    - ALLOW_SOFT_FAILURE_HERE=true
 
   - env:
-      <<: *_DEB_TEMPLATE
-      - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
-      - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
-      - ALLOW_SOFT_FAILURE_HERE=true
+    <<: *_DEB_TEMPLATE
+    - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
+    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
+    - ALLOW_SOFT_FAILURE_HERE=true
 
 
 
