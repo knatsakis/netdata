@@ -418,6 +418,7 @@ jobs:
 
 
   - name: "Package debian/jessie"
+    <<: *_DEB_TEMPLATE
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="jessie" BUILD_STRING="debian/jessie"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
