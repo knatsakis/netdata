@@ -361,11 +361,11 @@ jobs:
   # https://us.images.linuxcontainers.org
   # https://packagecloud.io/docs#install_repo
 
+  - stage: Package Ubuntu and Debian
   # Ubuntu distros build
   #
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package ubuntu/disco"
+  - <<: *_DEB_TEMPLATE
+    name: "Package ubuntu/disco"
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="disco" BUILD_STRING="ubuntu/disco"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
@@ -373,9 +373,8 @@ jobs:
 
 
 
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package ubuntu/cosmic"
+  - <<: *_DEB_TEMPLATE
+    name: "Package ubuntu/cosmic"
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="cosmic" BUILD_STRING="ubuntu/cosmic"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
@@ -383,9 +382,8 @@ jobs:
 
 
 
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package ubuntu/bionic"
+  - <<: *_DEB_TEMPLATE
+    name: "Package ubuntu/bionic"
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="ubuntu" BUILD_RELEASE="bionic" BUILD_STRING="ubuntu/bionic"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
@@ -394,9 +392,8 @@ jobs:
 
 
   # Debian distros build
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package debian/buster"
+  - <<: *_DEB_TEMPLATE
+    name: "Package debian/buster"
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="buster" BUILD_STRING="debian/buster"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
@@ -404,16 +401,12 @@ jobs:
 
 
 
-  - stage: 
-    <<: *_DEB_TEMPLATE
-    stage: "Package debian/stretch"
+  - <<: *_DEB_TEMPLATE
+    name: "Package debian/stretch"
     env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="stretch" BUILD_STRING="debian/stretch"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
-
-
-
 
 
 
