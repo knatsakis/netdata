@@ -414,16 +414,11 @@ jobs:
 
 
 
-  - stage:
-    <<: *_DEB_TEMPLATE
-    stage: "Package debian/jessie"
+
+
+
+  - name: "Package debian/jessie"
     env:
-    - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="jessie" BUILD_STRING="debian/jessie"
-    - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
-    - ALLOW_SOFT_FAILURE_HERE=true
-
-
-  - env:
     - BUILDER_NAME="builder" BUILD_DISTRO="debian" BUILD_RELEASE="jessie" BUILD_STRING="debian/jessie"
     - PACKAGE_TYPE="deb" REPO_TOOL="apt-get"
     - ALLOW_SOFT_FAILURE_HERE=true
