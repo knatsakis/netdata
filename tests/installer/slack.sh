@@ -11,6 +11,8 @@
 # Author: Pavlos Emm. Katsoulakis <paul@netdata.cloud
 
 post_message() {
+	return 0
+
 	TYPE="$1"
 	MESSAGE="$2"
 	CUSTOM_CHANNEL="$3"
